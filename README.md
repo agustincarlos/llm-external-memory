@@ -39,7 +39,7 @@ Anyone can replicate this in a few steps with tools they probably already use:
 
 ## Instruction for the Model
 
-The key is giving the model the judgment to decide when to read and when to write:
+The key is not just giving the model memory, but giving it the judgment to decide when to read and when to write:
 
     Your external memory is in Google Drive.
     Documents: LOG / RULES / ERRORS / WORKFLOWS / MASTER_CONTEXT
@@ -84,6 +84,7 @@ The key is giving the model the judgment to decide when to read and when to writ
     {
       "status": "success",
       "action": "GET_LAST",
+     "doc": "RULES",
       "result": "Always deploy a new version after editing"
     }
 
@@ -152,11 +153,11 @@ Example with Postman: create a POST request with the same JSON body shown above.
 | Context change | UPDATE_MASTER → MASTER_CONTEXT |
 | General event | APPEND_LOG → LOG |
 | Need last rule or error | GET_LAST → document |
-| Need full context | READ_DOC → MASTER_CONTEXT |
+| Need full context | READ_DOC → selected document |
 | Quick overview | SUMMARIZE_DOC → any doc |
 
 ## License
 
-MIT
+MIT License
 
 
