@@ -87,6 +87,61 @@ The key is giving the model the judgment to decide when to read and when to writ
       "result": "Always deploy a new version after editing"
     }
 
+## Client Bridge
+
+The model generates a structured memory line.
+The client bridge converts it into a POST request to your Apps Script endpoint.
+
+### iOS — Apple Shortcuts
+
+Use Apple Shortcuts as a lightweight bridge between the model output and the Apps Script API.
+
+Typical flow:
+1. Capture the structured memory line (via input, clipboard, or share sheet)
+2. Extract the action and content
+3. Send a POST request to the Apps Script endpoint with a JSON body
+
+Example JSON body:
+
+    {
+      "token": "YOUR_TOKEN",
+      "action": "ADD_RULE",
+      "content": "your text"
+    }
+
+### Android — HTTP Shortcuts
+
+Use HTTP Shortcuts from the Play Store as the Android equivalent.
+
+Typical setup:
+1. Create a new shortcut
+2. Method: POST
+3. URL: your Apps Script endpoint
+4. Request body: JSON
+
+Example JSON body:
+
+    {
+      "token": "YOUR_TOKEN",
+      "action": "ADD_RULE",
+      "content": "your text"
+    }
+
+### Desktop
+
+Not strictly required.
+
+On desktop, the same request can be sent manually with any HTTP client.
+
+Example with curl:
+
+    curl -X POST YOUR_URL \
+      -H "Content-Type: application/json" \
+      -d '{"token":"YOUR_TOKEN","action":"ADD_RULE","content":"your text"}'
+
+Example with Postman: create a POST request with the same JSON body shown above.
+
+
 ## Decision Workflow
 
 | Situation | Action |
